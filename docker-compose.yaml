@@ -4,6 +4,9 @@ services:
 
   # Default login admin:changeme at http://localhost/wp-login.php
   web:
+    # Since this image and tag seems obscure
+    # src: https://git.cloudron.io/packages/wordpress-managed-app from CI https://git.cloudron.io/packages/wordpress-managed-app/-/pipelines/11413
+    # Packed is WORDPRESS_VERSION=6.7.2 WPCLI_VERSION=2.11.0
     image: cloudron/org.wordpress.cloudronapp:202502120219490000
     ports:
       - "80:80"
