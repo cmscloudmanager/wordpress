@@ -1,0 +1,46 @@
+name: wordpress-cmscm
+
+services:
+
+  # Default login admin:changeme at http://localhost/wp-login.php
+  web:
+    image: cloudron/org.wordpress.cloudronapp:202502120219490000
+    ports:
+      - "80:80"
+    networks:
+      - db
+    # No healthcheck defined not working right now
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db
+      CLOUDRON_MYSQL_USERNAME: wordpress
+      CLOUDRON_MYSQL_PASSWORD: wordpress
+      CLOUDRON_MYSQL_HOST: db
+      CLOUDRON_MYSQL_PORT: 3306
+      CLOUDRON_MYSQL_DATABASE: wordpress
+      CLOUDRON_APP_ORIGIN: http://localhost
+    volumes:
+      - ./app-data/wordpress:/app/data
+
+  db:
+    image: mysql:8.0-debian
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - db
+    volumes:
+      - ./app-data/db-data:/var/lib/mysql
+
+networks:
+  db:
+
+volumes:
+  web:
+  db:
