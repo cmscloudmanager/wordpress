@@ -1,4 +1,4 @@
-# Wordpress ready for the CMS Cloud Manger project
+# WordPress Docker for CMS Cloud Manger
 
 I just used my known [wordpress-managed-app](https://git.cloudron.io/packages/wordpress-managed-app) and abridged the [docker-compose.yaml](./docker-compose.yaml) to set and use the variables that are necessary.
 
